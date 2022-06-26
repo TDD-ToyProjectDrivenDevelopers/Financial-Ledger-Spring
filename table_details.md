@@ -9,15 +9,24 @@
 |PASSWORD|비밀번호|VARCHAR||Y|
 |USERNAME|회원 이름|VARCHAR||Y|
 |PHONE_NUMBER|전화번호|VARCHAR||N|
+|IS_DELETED|회원 탈퇴 유무|BOOLEAN||N|
 
 ### 계좌(ACCOUNT) 테이블
 
 |컬럼명|한글명|TYPE|KEY|NOT NULL|
 |:---:|:---:|:---:|:---:|:---:|
 |ACCOUNT_ID|계좌 고유번호|BIGINT|PK|Y|
+|BANK_ID|은행 고유번호|BIGINT|FK|Y|
 |USER_ID|회원 고유번호|BIGINT|FK|Y|
 |ACCOUNT_NAME|계좌 이름|VARCHAR||Y|
 |DEPOSIT_AMOUNT|예금 잔액|BIGINT||Y|
+
+### 은행(Bank) 테이블
+
+|컬럼명|한글명|TYPE|KEY|NOT NULL|
+|:---:|:---:|:---:|:---:|:---:|
+|BANK_ID|은행 고유번호|BIGINT|PK|Y|
+|BANK_NAME|은행 이름|VARCHAR||Y|
 
 ### 거래() 테이블
 
