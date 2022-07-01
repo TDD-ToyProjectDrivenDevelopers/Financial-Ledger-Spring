@@ -18,6 +18,9 @@ public class Diary extends BaseEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tx_history_id")
     private TXHistory txHistory;
