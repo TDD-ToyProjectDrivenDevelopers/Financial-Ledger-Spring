@@ -5,10 +5,10 @@
 |컬럼명|한글명|TYPE|KEY|NOT NULL|
 |:---:|:---:|:---:|:---:|:---:|
 |USER_ID|회원 고유번호|BIGINT|PK|Y|
+|ROLE|회원 타입|USERROLE||Y|
 |EMAIL|이메일|VARCHAR||Y|
 |PASSWORD|비밀번호|VARCHAR||Y|
 |USERNAME|회원 이름|VARCHAR||Y|
-|PHONE_NUMBER|전화번호|VARCHAR||N|
 |IS_DELETED|회원 탈퇴 유무|BOOLEAN||N|
 
 ### 계좌(ACCOUNT) 테이블
@@ -28,16 +28,15 @@
 |BANK_ID|은행 고유번호|BIGINT|PK|Y|
 |BANK_NAME|은행 이름|VARCHAR||Y|
 
-### 거래() 테이블
+### 거래(TxHistory) 테이블
 
 |컬럼명|한글명|TYPE|KEY|NOT NULL|
 |:---:|:---:|:---:|:---:|:---:|
-|거래_ID|거래 고유번호|BIGINT|PK|Y|
+|TX_HISTORY__ID|거래 고유번호|BIGINT|PK|Y|
 |ACCOUNT_ID|계좌 고유번호|BIGINT|FK|Y|
-|거래_DATE|거래 날짜|DATETIME||Y|
+|TX_DATE|거래 날짜|DATETIME||Y|
 |TYPE|거래 종류|ENUM||Y|
 |AMOUNT|거래 금액|BIGINT||Y|
-|DESCRIPTION|거래 상세내용|VARCHAR||N|
 
 ### 카테고리(CATEGORY) 테이블
 
@@ -52,7 +51,7 @@
 |컬럼명|한글명|TYPE|KEY|NOT NULL|
 |:---:|:---:|:---:|:---:|:---:|
 |DIARY_ID|일기 고유번호|BIGINT|PK|Y|
-|거래_ID|거래 고유번호|BIGINT|FK|Y|
+|TX_HISTORY_ID|거래 고유번호|BIGINT|FK|Y|
 |TITLE|일기 제목|VARCHAR||Y|
 |DESCRIPTION|일기 상세내용|VARCHAR||N|
 
