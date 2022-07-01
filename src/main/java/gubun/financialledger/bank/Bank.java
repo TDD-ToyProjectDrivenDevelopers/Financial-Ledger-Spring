@@ -5,7 +5,7 @@ import gubun.financialledger.common.BaseEntity;
 import javax.persistence.*;
 
 @Entity
-public class Bank extends BaseEntity {
+public class Bank {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "bank_id")
