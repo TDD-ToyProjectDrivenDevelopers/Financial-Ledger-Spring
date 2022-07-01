@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>가계부</title>
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" th:href="@{/plugins/bootstrap/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/plugins/themify/css/themify-icons.css}" >
+  <link rel="stylesheet" th:href="@{/plugins/counto/animate.css}" >
+  <link rel="stylesheet" th:href="@{/plugins/aos/aos.css}">
+  <link rel="stylesheet" th:href="@{/plugins/owl-carousel/owl.carousel.min.css}">
+  <link rel="stylesheet" th:href="@{/plugins/owl-carousel/owl.theme.default.min.css}">
+  <link rel="stylesheet" th:href="@{/plugins/magnific-popup/magnific-popup.css}">
+  <link rel="stylesheet" th:href="@{/plugins/animated-text/animated-text.css}">
+
+  <!-- Main Stylesheet -->
+	<link rel="stylesheet" th:href="@{/css/style.css}" >
+</head>
+<body>
+<!-- Navigation Start -->
+<!-- Header Start -->
+<nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+	<div class="container">
+	  <a class="navbar-brand" href="index.html">
+	  	<img th:src="@{/images/logo.png}"  alt="" class="img-fluid"/>
+	  </a>
+
+	  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="ti-align-justify"></span>
+	  </button>
+  
+		  <div class="collapse navbar-collapse" id="navbarsExample09">
+			<ul class="navbar-nav ml-auto">
+			  <li class="nav-item  active"><a class="nav-link" th:href="@{/}">홈</a></li>
+				<li class="nav-item  active"><a class="nav-link" th:href="@{/menu/1}">내정보</a></li>
+			  <li class="nav-item dropdown active">
+					<a class="nav-link dropdown-toggle" th:href="@{/menu/2}" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가계부</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdown02">
+						<li><a class="dropdown-item" th:href="@{/menu/2/}">내역</a></li>
+						<li><a class="dropdown-item" th:href="@{/menu/2/}">달력</a></li>
+						<li><a class="dropdown-item" th:href="@{/menu/2/}">예산</a></li>
+					</ul>
+			  </li>
+				<li class="nav-item dropdown active">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분석</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdown03">
+						<li><a class="dropdown-item" th:href="@{/menu/3}">지출분석</a></li>
+						<li><a class="dropdown-item" th:href="@{/menu/3}">수입분석</a></li>
+					</ul>
+				</li>
+				<li class="nav-item  active"><a class="nav-link" th:href="@{/menu/4}">하루일기</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- Header Close --> 
+
+
+<!-- Navigation ENd -->
+
+<!-- Banner Start -->
+<section class="section banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10">
+				 <h2 class="cd-headline clip is-full-width mb-4 ">
+				 	멍멍이 <br>
+                    <span class="cd-words-wrapper text-color">
+                        <b class="is-visible">졸리다 </b>
+                        <b>배고파</b>
+                        <b>치킨먹자</b>
+                    </span>
+                </h2>
+                <p>할말이 없어요. 여기다가 뭘할거죠?? <br>. 여기다가 뭘할거죠?? </p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Banner End -->
+
+<!-- POrtfolio start -->
+<section class="portfolio ">
+	<div class="container">
+		<div class="row mb-5">
+	      	<div class="col-10">
+		        <div class="btn-group btn-group-toggle " data-toggle="buttons">
+		          <label class="btn active ">
+		            <input type="radio" name="shuffle-filter" value="all" checked="checked" />이딴건...
+		          </label>
+		          <label class="btn">
+		            <input type="radio" name="shuffle-filter" value="design" />필요가?
+		          </label>
+		          <label class="btn">
+		            <input type="radio" name="shuffle-filter" value="branding" />없겟죠~~ㅎ
+		          </label>
+		        </div>
+	      	</div>
+    	</div>	
+		<div class="row shuffle-wrapper portfolio-gallery">
+	      <div class="col-lg-4 col-6 mb-4 shuffle-item"  data-groups="[&quot;design&quot;,&quot;illustration&quot;]">
+		      	<div class="position-relative inner-box">
+		          <div class="image position-relative ">
+	               <img src="../static/images/portfolio/1.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
+	                <div class="overlay-box">
+	                  <div class="overlay-inner">
+	                    <a class="overlay-content" href="portfolio-single.html">
+	                      <h5 class="mb-0">Painting</h5>
+	                      <p>Design</p>
+	                    </a>
+	                  </div>
+	                </div> 
+	            </div>
+		      </div>
+	      </div>
+
+	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;branding&quot;]">
+	        <div class="position-relative inner-box" >
+	            <div class="image position-relative ">
+	               <img src="../static/images/portfolio/4.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
+	                <div class="overlay-box">
+	                  <div class="overlay-inner">
+		                    <a class="overlay-content" href="portfolio-single.html">
+		                      <h5 class="mb-0">Web app</h5>
+		                      <p>Development</p>
+		                    </a>
+	                	</div> 
+		            </div>
+		        </div>
+		      </div>
+	      </div>
+
+	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;illustration&quot;]">
+	        <div class="position-relative inner-box">
+	            <div class="image position-relative ">
+	               <img src="../static/images/portfolio/3.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
+	                <div class="overlay-box">
+	                  <div class="overlay-inner">
+	                    <a class="overlay-content" href="portfolio-single.html">
+	                      <h5 class="mb-0">Business </h5>
+	                      <p>marketing</p>
+	                    </a>
+	                  </div>
+	                </div> 
+	            </div>
+	        </div>
+	      </div>
+
+	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;branding&quot;]">
+	        <div class="position-relative inner-box">
+	            <div class="image position-relative ">
+	               <img src="../static/images/portfolio/5.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
+	                <div class="overlay-box">
+	                  <div class="overlay-inner">
+	                    <a class="overlay-content" href="portfolio-single.html">
+	                      <h5 class="mb-0">Portfolio</h5>
+	                      <p>Design</p>
+	                    </a>
+	                  </div>
+	                </div> 
+	            </div>
+	        </div>
+	      </div>
+
+	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;illustration&quot;]">
+	        <div class="position-relative inner-box">
+	            <div class="image position-relative ">
+	               <img src="../static/images/portfolio/6.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
+	                <div class="overlay-box">
+	                  <div class="overlay-inner">
+	                    <a class="overlay-content" href="portfolio-single.html">
+	                       <h5 class="mb-0 ">Modern web</h5>
+	                      	<p>Seo</p>
+	                    </a>
+	                  </div>
+	                </div> 
+	            </div>
+	        </div>
+	      </div>
+
+	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;photo&quot;]">
+	        <div class="position-relative inner-box">
+	            <div class="image position-relative ">
+	               <img src="../static/images/portfolio/7.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
+	                <div class="overlay-box">
+	                  <div class="overlay-inner">
+	                    <a class="overlay-content" href="portfolio-single.html">
+	                       <h5 class="mb-0">Agency web</h5>
+	                      	<p>Design</p>
+	                    </a>
+	                  </div>
+	                </div> 
+	            </div>
+	        </div>
+	      </div>
+	    </div>
+	</div>
+</section>
+<!-- Portfolio End -->
+
+<!-- Service start -->
+<section class="section service-home border-top">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<h2 class="mb-2 ">메롱</h2>
+				<p class="mb-5">JPA 하이버네이트 공부</p>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="service-item mb-5" data-aos="fade-left"  data-aos-delay="950">
+					<i class="ti-video-camera"></i>
+					<h4 class="my-3">Video Marketing</h4>
+					<p>멍멍이</p>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="service-item mb-5 mb-lg-0" data-aos="fade-left"  data-aos-delay="1050">
+					<i class="ti-android"></i>
+					<h4 class="my-3">App Design</h4>
+					<p>멍멍이</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- service end -->
+<!-- Footer start -->
+<section class="footer">
+	<div class="container">
+		<div class="row ">
+			<div class="col-lg-6">
+				<p class="mb-0">Copyrights © 2022. Designed & Developed by T.D.D</p>
+			</div>
+			<div class="col-lg-6">
+				<div class="widget footer-widget text-lg-right mt-5 mt-lg-0">
+					<ul class="list-inline mb-0">
+						<li class="list-inline-item"><a href="https://github.com/TDD-ToyProjectDrivenDevelopers" target="_blank"><i class="ti-github mr-3"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+
+<!-- Footer End -->
+<!-- jQuery -->
+<script th:src="@{/plugins/jQuery/jquery.min.js}"></script>
+<!-- Bootstrap JS -->
+<script th:src="@{/plugins/bootstrap/bootstrap.min.js}"></script>
+<script th:src="@{/plugins/plugins/aos/aos.js}"></script>
+<script th:src="@{/plugins/owl-carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/plugins/plugins/shuffle/shuffle.min.js}"></script>
+<script th:src="@{/plugins/magnific-popup/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/plugins/plugins/animated-text/animated-text.js}"></script>
+<script th:src="@{/plugins/counto/apear.js}"></script>
+<script th:src="@{/plugins/plugins/counto/counTo.js}"></script>
+<!-- Main Script -->
+<script th:src="@{/js/script.js}"></script>
+</html>
