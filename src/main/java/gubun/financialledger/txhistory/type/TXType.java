@@ -1,4 +1,4 @@
-package gubun.financialledger.txhistory;
+package gubun.financialledger.txhistory.type;
 
 import lombok.Getter;
 

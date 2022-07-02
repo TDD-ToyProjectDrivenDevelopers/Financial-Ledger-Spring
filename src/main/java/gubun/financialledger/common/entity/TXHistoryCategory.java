@@ -1,7 +1,7 @@
-package gubun.financialledger.common;
+package gubun.financialledger.common.entity;
 
-import gubun.financialledger.category.Category;
-import gubun.financialledger.txhistory.TXHistory;
+import gubun.financialledger.category.entity.Category;
+import gubun.financialledger.txhistory.entity.TXHistory;
 
 import javax.persistence.*;
 
