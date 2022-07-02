@@ -1,4 +1,4 @@
-package gubun.financialledger.user;
+package gubun.financialledger.user.entity;
 
 import lombok.Getter;
 

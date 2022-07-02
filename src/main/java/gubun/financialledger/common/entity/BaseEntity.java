@@ -1,4 +1,4 @@
-package gubun.financialledger.common;
+package gubun.financialledger.common.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

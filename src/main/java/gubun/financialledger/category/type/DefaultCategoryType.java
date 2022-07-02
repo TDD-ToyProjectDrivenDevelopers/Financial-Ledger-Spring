@@ -1,4 +1,4 @@
-package gubun.financialledger.category;
+package gubun.financialledger.category.type;
 
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
-package gubun.financialledger.user;
+package gubun.financialledger.user.entity;
 
-import gubun.financialledger.common.BaseEntity;
+import gubun.financialledger.common.entity.BaseEntity;
 
 import javax.persistence.*;
 

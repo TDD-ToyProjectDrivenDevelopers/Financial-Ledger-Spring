@@ -1,7 +1,7 @@
-package gubun.financialledger.txhistory;
+package gubun.financialledger.txhistory.entity;
 
-import gubun.financialledger.account.Account;
-import gubun.financialledger.common.BaseEntity;
+import gubun.financialledger.account.entity.Account;
+import gubun.financialledger.txhistory.type.TXType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
