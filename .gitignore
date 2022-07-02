@@ -37,3 +37,7 @@ out/
 .vscode/
 
 ### CUSTOM ###
+
+
+### 김은철 : node_modules 추가 (웹 애플리케이션 사용자 인증 성공 후, 템플릿 가져오며 기입되어있던 gitignoer 내용) ###
+node_modules
