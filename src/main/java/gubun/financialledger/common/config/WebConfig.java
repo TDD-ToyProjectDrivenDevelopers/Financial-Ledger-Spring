@@ -16,9 +16,17 @@ public class WebConfig implements WebMvcConfigurer{
         registry.addViewController("/menu/3").setViewName("index");
         registry.addViewController("/menu/4").setViewName("index");
 
-        //registry.addViewController("/login").setViewName("login-bootstrap");
-    }
+        //security
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/register").setViewName("register");
+        registry.addViewController("/pwInquiry").setViewName("forgot-password");
+        registry.addViewController("/idInquiry").setViewName("forgot-password");
 
+        //error
+        registry.addViewController("/accessDenied").setViewName("403");
+        registry.addViewController("/notfound").setViewName("404");
+
+    }
     @Bean
     public SpringSecurityDialect securityDialect() {
         return new SpringSecurityDialect();

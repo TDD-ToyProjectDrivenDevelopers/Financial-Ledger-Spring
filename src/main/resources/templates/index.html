@@ -1,268 +1,533 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  lang="ko">
+<html lang="kr"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-  <meta charset="utf-8">
-  <title>가계부</title>
-  <!-- mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" th:href="@{/plugins/bootstrap/bootstrap.min.css}">
-  <link rel="stylesheet" th:href="@{/plugins/themify/css/themify-icons.css}" >
-  <link rel="stylesheet" th:href="@{/plugins/counto/animate.css}" >
-  <link rel="stylesheet" th:href="@{/plugins/aos/aos.css}">
-  <link rel="stylesheet" th:href="@{/plugins/owl-carousel/owl.carousel.min.css}">
-  <link rel="stylesheet" th:href="@{/plugins/owl-carousel/owl.theme.default.min.css}">
-  <link rel="stylesheet" th:href="@{/plugins/magnific-popup/magnific-popup.css}">
-  <link rel="stylesheet" th:href="@{/plugins/animated-text/animated-text.css}">
-
-  <!-- Main Stylesheet -->
-	<link rel="stylesheet" th:href="@{/css/style.css}" >
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>가계부</title>
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}" >
+    <!-- JS -->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+    <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+    <script th:src="@{/js/demo/chart-area-demo.js}"></script>
+    <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
 </head>
-<body>
-<!-- Navigation Start -->
-<!-- Header Start -->
-<nav class="navbar navbar-expand-lg  main-nav " id="navbar">
-	<div class="container">
-	  <a class="navbar-brand" href="index.html">
-	  	<img th:src="@{/images/logo.png}"  alt="" class="img-fluid"/>
-	  </a>
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">TDD<sup>gubun</sup></div>
+            </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>가계부</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-	  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="ti-align-justify"></span>
-	  </button>
-  
-		  <div class="collapse navbar-collapse" id="navbarsExample09">
-			<ul class="navbar-nav ml-auto">
-			  <li class="nav-item  active"><a class="nav-link" th:href="@{/}">홈</a></li>
-				<li class="nav-item  active"><a class="nav-link" th:href="@{/menu/1}">내정보</a></li>
-			  <li class="nav-item dropdown active">
-					<a class="nav-link dropdown-toggle" th:href="@{/menu/2}" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">가계부</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown02">
-						<li><a class="dropdown-item" th:href="@{/menu/2/}">내역</a></li>
-						<li><a class="dropdown-item" th:href="@{/menu/2/}">달력</a></li>
-						<li><a class="dropdown-item" th:href="@{/menu/2/}">예산</a></li>
-					</ul>
-			  </li>
-				<li class="nav-item dropdown active">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분석</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" th:href="@{/menu/3}">지출분석</a></li>
-						<li><a class="dropdown-item" th:href="@{/menu/3}">수입분석</a></li>
-					</ul>
-				</li>
-				<li class="nav-item  active"><a class="nav-link" th:href="@{/menu/4}">하루일기</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                가계부1
+            </div>
 
-<!-- Header Close --> 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>하루일기</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">하루일기:</h6>
+                        <a class="collapse-item" href="buttons.html">일기</a>
+                        <a class="collapse-item" href="cards.html">사진</a>
+                    </div>
+                </div>
+            </li>
 
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>설정</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">설정</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                분석
+            </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>페이지(임시)</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" th:href="@{/login}">Login</a>
+                        <a class="collapse-item" th:href="@{/register}" >Register</a>
+                        <a class="collapse-item" th:href="@{/pwInquiry}">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <a class="collapse-item" th:href="@{/notfound}">404 Page</a>
+                    </div>
+                </div>
+            </li>
 
-<!-- Navigation ENd -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>지출분석</span></a>
+            </li>
 
-<!-- Banner Start -->
-<section class="section banner">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-10">
-				 <h2 class="cd-headline clip is-full-width mb-4 ">
-				 	멍멍이 <br>
-                    <span class="cd-words-wrapper text-color">
-                        <b class="is-visible">졸리다 </b>
-                        <b>배고파</b>
-                        <b>치킨먹자</b>
-                    </span>
-                </h2>
-                <p>할말이 없어요. 여기다가 뭘할거죠?? <br>. 여기다가 뭘할거죠?? </p>
-			</div>
-		</div>
-	</div>
-</section>
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>지출내역 확인</span></a>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+        </ul>
+        <!-- End of Sidebar -->
 
-<!-- Banner End -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
 
-<!-- POrtfolio start -->
-<section class="portfolio ">
-	<div class="container">
-		<div class="row mb-5">
-	      	<div class="col-10">
-		        <div class="btn-group btn-group-toggle " data-toggle="buttons">
-		          <label class="btn active ">
-		            <input type="radio" name="shuffle-filter" value="all" checked="checked" />이딴건...
-		          </label>
-		          <label class="btn">
-		            <input type="radio" name="shuffle-filter" value="design" />필요가?
-		          </label>
-		          <label class="btn">
-		            <input type="radio" name="shuffle-filter" value="branding" />없겟죠~~ㅎ
-		          </label>
-		        </div>
-	      	</div>
-    	</div>	
-		<div class="row shuffle-wrapper portfolio-gallery">
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item"  data-groups="[&quot;design&quot;,&quot;illustration&quot;]">
-		      	<div class="position-relative inner-box">
-		          <div class="image position-relative ">
-	               <img src="../static/images/portfolio/1.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="portfolio-single.html">
-	                      <h5 class="mb-0">Painting</h5>
-	                      <p>Design</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-		      </div>
-	      </div>
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;branding&quot;]">
-	        <div class="position-relative inner-box" >
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/4.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-		                    <a class="overlay-content" href="portfolio-single.html">
-		                      <h5 class="mb-0">Web app</h5>
-		                      <p>Development</p>
-		                    </a>
-	                	</div> 
-		            </div>
-		        </div>
-		      </div>
-	      </div>
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;illustration&quot;]">
-	        <div class="position-relative inner-box">
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/3.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="portfolio-single.html">
-	                      <h5 class="mb-0">Business </h5>
-	                      <p>marketing</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-	        </div>
-	      </div>
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;branding&quot;]">
-	        <div class="position-relative inner-box">
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/5.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="portfolio-single.html">
-	                      <h5 class="mb-0">Portfolio</h5>
-	                      <p>Design</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-	        </div>
-	      </div>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
 
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;illustration&quot;]">
-	        <div class="position-relative inner-box">
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/6.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="portfolio-single.html">
-	                       <h5 class="mb-0 ">Modern web</h5>
-	                      	<p>Seo</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-	        </div>
-	      </div>
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
 
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;photo&quot;]">
-	        <div class="position-relative inner-box">
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/7.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="portfolio-single.html">
-	                       <h5 class="mb-0">Agency web</h5>
-	                      	<p>Design</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-	        </div>
-	      </div>
-	    </div>
-	</div>
-</section>
-<!-- Portfolio End -->
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
 
-<!-- Service start -->
-<section class="section service-home border-top">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6">
-				<h2 class="mb-2 ">메롱</h2>
-				<p class="mb-5">JPA 하이버네이트 공부</p>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-lg-4">
-				<div class="service-item mb-5" data-aos="fade-left"  data-aos-delay="950">
-					<i class="ti-video-camera"></i>
-					<h4 class="my-3">Video Marketing</h4>
-					<p>멍멍이</p>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="service-item mb-5 mb-lg-0" data-aos="fade-left"  data-aos-delay="1050">
-					<i class="ti-android"></i>
-					<h4 class="my-3">App Design</h4>
-					<p>멍멍이</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- service end -->
-<!-- Footer start -->
-<section class="footer">
-	<div class="container">
-		<div class="row ">
-			<div class="col-lg-6">
-				<p class="mb-0">Copyrights © 2022. Designed & Developed by T.D.D</p>
-			</div>
-			<div class="col-lg-6">
-				<div class="widget footer-widget text-lg-right mt-5 mt-lg-0">
-					<ul class="list-inline mb-0">
-						<li class="list-inline-item"><a href="https://github.com/TDD-ToyProjectDrivenDevelopers" target="_blank"><i class="ti-github mr-3"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter">7</span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Message Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="sidebar-card-illustration mb-2" />
+                                        <img class="rounded-circle" th:src="@{/img/undraw_profile_1.svg}"  alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                            problem I've been having.</div>
+                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" th:src="@{/img/undraw_profile_2.svg}"  alt="...">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">I have the photos that you ordered last month, how
+                                            would you like them sent to you?</div>
+                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" th:src="@{/img/undraw_profile_3.svg}"  alt="...">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Last month's report looks great, I am very happy with
+                                            the progress so far, keep up the good work!</div>
+                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                     th:src="@{/img/undraw_profile.svg}"
+                                     src="">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">가계부</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i>보고서 출력</a>
+                    </div>
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                이번달 수입</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                이번달 지출</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">예산
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                하루일기</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">지출 요약</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">수입 요약</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="sdropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="myPieChart"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Direct
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Social
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> Referral
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" th:href="@{/logout}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
-
-<!-- Footer End -->
-<!-- jQuery -->
-<script th:src="@{/plugins/jQuery/jquery.min.js}"></script>
-<!-- Bootstrap JS -->
-<script th:src="@{/plugins/bootstrap/bootstrap.min.js}"></script>
-<script th:src="@{/plugins/plugins/aos/aos.js}"></script>
-<script th:src="@{/plugins/owl-carousel/owl.carousel.min.js}"></script>
-<script th:src="@{/plugins/plugins/shuffle/shuffle.min.js}"></script>
-<script th:src="@{/plugins/magnific-popup/jquery.magnific-popup.min.js}"></script>
-<script th:src="@{/plugins/plugins/animated-text/animated-text.js}"></script>
-<script th:src="@{/plugins/counto/apear.js}"></script>
-<script th:src="@{/plugins/plugins/counto/counTo.js}"></script>
-<!-- Main Script -->
-<script th:src="@{/js/script.js}"></script>
 </html>

@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-@Service
-@Transactional
-public class CustomUserDetailService implements UserDetailsService {
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        return null;
-    }
-}
+//@Service
+//@Transactional
+//public class CustomUserDetailService implements UserDetailsService {
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//
+//        return null;
+//    }
+//}
