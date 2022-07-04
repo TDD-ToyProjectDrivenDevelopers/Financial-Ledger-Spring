@@ -4,13 +4,10 @@ spring:
     username: gubun_DBA
     password: gt4MW00mv7JSO4EkpXPH
     driver-class-name: org.postgresql.Driver
-  config:
-    activate:
-      on-profile: dev
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
