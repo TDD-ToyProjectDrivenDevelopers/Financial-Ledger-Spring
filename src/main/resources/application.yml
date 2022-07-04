@@ -1,20 +1,8 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://gubun-postgre.cbj06ruinatu.us-west-1.rds.amazonaws.com:5432/postgres
-    username: gubun_DBA
-    password: gt4MW00mv7JSO4EkpXPH
-    driver-class-name: org.postgresql.Driver
-  config:
-    activate:
-      on-profile: dev
-
-  jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        format_sql: true
+  profiles:
+    active: dev
 
 logging.level:
   org.hibernate.SQL: debug
-  org.hibernate.type: trace
+#  org.hibernate.type: trace
+
