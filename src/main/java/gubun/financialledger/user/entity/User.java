@@ -1,10 +1,16 @@
 package gubun.financialledger.user.entity;
 
 import gubun.financialledger.common.entity.BaseEntity;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,4 +33,12 @@ public class User extends BaseEntity {
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 
+    @Builder
+    public User(UserRole role, String email, String password, String username, Boolean isDeleted) {
+        this.role = role;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.isDeleted = isDeleted;
+    }
 }

@@ -1,19 +1,30 @@
 package gubun.financialledger.common.config;
 
+import gubun.financialledger.user.entity.UserRole;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig  {
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    private final UserDetailsService userDetailsService;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     private static final String[] PUBLIC_MATCHERS = {
             "/css/**",
@@ -22,27 +33,31 @@ public class WebSecurityConfig  {
             "/vendor/**",
     };
 
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-           .csrf().disable()
-           .authorizeRequests()
-                .antMatchers(PUBLIC_MATCHERS).permitAll()
-                .antMatchers("/", "/register").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")  // 일단 Admin 해놓음.
-                .anyRequest().authenticated()       //인증 받은 사람만
-                .and()
-           .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .failureUrl("/login?error")
-                .permitAll()
-                .and()
-           .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll()
-                .and()
-            .exceptionHandling()
-                .accessDeniedPage("accessDenied");
+                .authorizeRequests()
+                    .antMatchers("/register", "/login").permitAll()
+                    .antMatchers("/admin/**").hasRole(UserRole.ADMIN.toString())
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/", true)
+                    .and()
+                .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .and()
+                .rememberMe()
+                    .userDetailsService(userDetailsService)
+                    .and()
+                .csrf();
+
+        return http.build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer(){
+        return (web) -> web.ignoring().antMatchers(PUBLIC_MATCHERS);
     }
 }
