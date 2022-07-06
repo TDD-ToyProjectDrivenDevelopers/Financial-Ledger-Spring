@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: ENC(Akn44dXsH2btWIRNfqmNJc60LKUOWP2c+PVQ15+xSoZf4ddzGl1JcI13hbWZ9LUVeXo6kwdlBIuw+YKPaSUkK8h0sQWonoADl1lGUFwdS4NAaeQugwBBNJIu6kwxMBJ1)
+    username: ENC(EmRRq+Xam8r36WFSPZas2UjrcY/DfwSv)
+    password: ENC(daX0fX/g9fgOzXIz8TroQj50f1XwHf4z6qHiPA0Vv3g=)
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
