@@ -54,7 +54,6 @@ public class WebSecurityConfig  {
                     .and()
                 .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))  // 로그아웃 요청 경로
-                    .logoutSuccessUrl("/login?logout")    // 로그아웃 성공 시 이동할 url
                     .invalidateHttpSession(true)          // 로그 아웃시 인증정보를 지우하고 세션을 무효화
                     .and()
                 .exceptionHandling()
@@ -64,7 +63,7 @@ public class WebSecurityConfig  {
                     .userDetailsService(userDetailsService)
                     //.tokenValiditySeconds(?) //default : 14일, 변경가능.
                     .and()
-                .csrf().disable();
+                .csrf();
 
         // 중복 로그인 관련 세팅
         http
@@ -74,16 +73,8 @@ public class WebSecurityConfig  {
 
         return http.build();
     }
-
         @Bean
         public WebSecurityCustomizer webSecurityCustomizer(){
             return (web) -> web.ignoring().antMatchers(PUBLIC_MATCHERS);
         }
-
-        // AuthenticationManager 에서 PasswordEncoder , UserDetailsService 를 이용
-        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-         }
-
-
 }
