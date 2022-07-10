@@ -2,8 +2,7 @@
 <html lang="ko"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,8 +20,8 @@
     <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
     <script th:src="@{/js/sb-admin-2.min.js}"></script>
+    <script th:src="@{/js/login/login.js}"></script>    <!--form login관련 js 추가-->
 </head>
-
 <body class="bg-gradient-primary">
 <div class="container">
     <!-- Outer Row -->
@@ -37,31 +36,34 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">로그인을 하세요</h1>
                                 </div>
-                                <form class="user" th:action="@{/login}" method="post">
+                                <form name ="form" class="form" th:action="@{/login}"  method="post"  onsubmit="return validateform()">
+                                    <div th:if="${param.error}">
+                                        <span> 로그인 실패</span>
+                                    </div>
+                                    <div th:if="${param.logout}">
+                                        <span> 로그아웃</span>
+                                    </div>
                                     <div class="form-group">
-                                        <input type="email"  name="username"  class="form-control form-control-user"
+                                        <input type="text" id="username" name="username"  class="form-control form-control-user"
                                                placeholder="아이디를 입력하세요."/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="비밀번호를 입력하세요."/>
+                                        <input type="password" id="password" name="password" class="form-control form-control-user"
+                                               placeholder="비밀번호를 입력하세요."/>
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Remember
-                                                Me</label>
+                                            <input type="checkbox" class="custom-control-input" id="remember" name="remember-me">
+                                            <label class="custom-control-label" for="remember">Remember Me</label>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-                                    <!--login failureUrl to "/login?error“
-                                            logoutSuccessUrl to "/login?logout” -->
                                     <hr>
-                                    <a th:href="@{/}" class="btn btn-google btn-user btn-block">
+                                    <a th:href="@{/oauth/google}" class="btn btn-google btn-user btn-block">
                                         <i class="fab fa-google fa-fw"></i> Login with Google
                                     </a>
-                                    <a th:href="@{/}" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                    <a th:href="@{/oauth/kakao}" class="btn btn-facebook btn-user btn-block">
+                                        <i class="fab fa-facebook-f fa-fw"></i> Login with kakao
                                     </a>
                                 </form>
                                 <hr>
