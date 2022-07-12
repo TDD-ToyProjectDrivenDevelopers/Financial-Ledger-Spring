@@ -2,6 +2,7 @@ package gubun.financialledger.common.config;
 
 import gubun.financialledger.user.auth.CustomAuthenticationFailureHandler;
 import gubun.financialledger.user.entity.UserRole;
+import gubun.financialledger.user.oauth.PrincipalOauth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig  {
 
     private final UserDetailsService userDetailsService;
+    private final PrincipalOauth2UserService principalOauth2UserService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -63,7 +65,14 @@ public class WebSecurityConfig  {
                     .userDetailsService(userDetailsService)
                     //.tokenValiditySeconds(?) //default : 14일, 변경가능.
                     .and()
-                .csrf();
+                .csrf()
+                    .and()
+                .oauth2Login()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/", true)
+                    .userInfoEndpoint()
+                    .userService(principalOauth2UserService);
+
 
         // 중복 로그인 관련 세팅
         http
@@ -73,8 +82,9 @@ public class WebSecurityConfig  {
 
         return http.build();
     }
-        @Bean
-        public WebSecurityCustomizer webSecurityCustomizer(){
-            return (web) -> web.ignoring().antMatchers(PUBLIC_MATCHERS);
-        }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer(){
+        return (web) -> web.ignoring().antMatchers(PUBLIC_MATCHERS);
+    }
 }
