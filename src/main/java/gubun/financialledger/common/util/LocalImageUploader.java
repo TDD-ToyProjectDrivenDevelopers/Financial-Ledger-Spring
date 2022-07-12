@@ -4,6 +4,7 @@ package gubun.financialledger.common.util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 @Slf4j
+@Profile("test")
 @Component
 public class LocalImageUploader implements ImageUploader{
 

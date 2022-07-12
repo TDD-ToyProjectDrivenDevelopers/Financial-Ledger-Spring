@@ -21,7 +21,6 @@ public class TestUser {
 
     private final UserService userService;
 
-    @Transactional
     @PostConstruct
     public void saveTestUser(){
 
@@ -31,6 +30,7 @@ public class TestUser {
         form.setRepeatPassword("1234");
         form.setEmail("1234@1234.com");
 
-        userService.save(form);
+        if(!userService.isDuplicatedUser(form.getUsername()))
+            userService.save(form);
     }
 }
