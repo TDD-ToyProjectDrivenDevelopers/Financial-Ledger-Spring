@@ -13,6 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 임시 테스트용 이미지 업로드 컨트롤러 입니다. (동작확인용)
+ */
 @Slf4j
 @Controller
 @RequestMapping("/image")
