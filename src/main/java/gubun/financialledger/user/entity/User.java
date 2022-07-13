@@ -34,12 +34,20 @@ public class User extends BaseEntity {
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 
+    @Column(name = "provider")
+    private String provider;
+
+    @Column(name = "provider_id")
+    private String providerId;
+
     @Builder
-    public User(UserRole role, String email, String password, String username, Boolean isDeleted) {
+    public User(UserRole role, String email, String password, String username, Boolean isDeleted, String provider, String providerId) {
         this.role = role;
         this.email = email;
         this.password = password;
         this.username = username;
         this.isDeleted = isDeleted;
+        this.provider = provider;
+        this.providerId = providerId;
     }
 }

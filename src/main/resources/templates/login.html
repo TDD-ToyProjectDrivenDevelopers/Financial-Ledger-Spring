@@ -59,11 +59,11 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                     <hr>
-                                    <a th:href="@{/oauth/google}" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Login with Google
+                                    <a th:href="@{/oauth2/authorization/google}" class="btn btn-user btn-block">
+                                        <img th:src="@{/images/google_login_button.png}"/>
                                     </a>
-                                    <a th:href="@{/oauth/kakao}" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with kakao
+                                    <a th:href="@{/oauth2/authorization/kakao}" class="btn btn-user btn-block">
+                                        <img th:src="@{/images/kakao_login_button.png}"/>
                                     </a>
                                 </form>
                                 <hr>
