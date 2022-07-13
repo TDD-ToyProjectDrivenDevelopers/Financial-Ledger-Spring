@@ -31,9 +31,9 @@ public class S3ImageUploader implements ImageUploader{
 //    @Value("${file.path}") // application.yml 에 설정된 외부경로, final 사용하면 안됨
 //    private String uploadFolder;
 
-    public String S3Uploader(MultipartFile file,String username) {
+    public String S3Uploader(MultipartFile file) {
 
-        String imgFileName = createFileName(file,username); // path : images/username/{uuid}_파일이름
+        String imgFileName = createFileName(file); // path : images/username/{uuid}_파일이름
 
         log.info("imageFileName = {}", imgFileName);
 
@@ -51,15 +51,15 @@ public class S3ImageUploader implements ImageUploader{
     }
 
 
-    private String createFileName(MultipartFile file,String username) {
-        return "images/"+username +"/"+UUID.randomUUID() + "_" + file.getOriginalFilename();
+    private String createFileName(MultipartFile file) {
+        return "images/"+UUID.randomUUID() + "_" + file.getOriginalFilename();
     }
 
 
 
     @Override
-    public String saveImage(MultipartFile file, String username) throws IOException {
-        return S3Uploader(file,username);
+    public String saveImage(MultipartFile file) throws IOException {
+        return S3Uploader(file);
     }
 
     @Override

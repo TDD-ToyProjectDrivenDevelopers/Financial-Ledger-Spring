@@ -34,7 +34,7 @@ public class ImageController {
     public String saveFile(@RequestParam MultipartFile file,@AuthenticationPrincipal PrincipalDetails user) throws IOException {
 
         log.info("request user = {}",user.toString());
-        String url = imageUploader.saveImage(file, user.getUsername());
+        String url = imageUploader.saveImage(file);
         return url;
     }
 }

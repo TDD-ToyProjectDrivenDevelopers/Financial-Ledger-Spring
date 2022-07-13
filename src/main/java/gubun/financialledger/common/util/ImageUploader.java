@@ -9,6 +9,6 @@ import java.io.IOException;
 @Component
 public interface ImageUploader {
 
-    public String saveImage(MultipartFile file,String username) throws IOException;
+    public String saveImage(MultipartFile file) throws IOException;
     public boolean deleteImage(String url);
 }

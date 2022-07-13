@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 @Slf4j
 @Profile("test")
@@ -21,11 +22,11 @@ public class LocalImageUploader implements ImageUploader{
     private static final String LocalPath = System.getProperty("user.home");
 
     @Override
-    public String saveImage(MultipartFile file,String username) throws IOException {
+    public String saveImage(MultipartFile file ) throws IOException {
 
         log.info("local path = {}",LocalPath);
 
-        String dirPath = LocalPath +File.separator+ username;
+        String dirPath = LocalPath +UUID.randomUUID() + "_" + file.getOriginalFilename();
 
 
         File folder = new File(dirPath);
