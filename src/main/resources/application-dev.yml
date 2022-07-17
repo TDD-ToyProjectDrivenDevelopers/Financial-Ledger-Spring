@@ -13,7 +13,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
   security:
     oauth2:
       client:
@@ -35,4 +34,30 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: kakao_account
+
+
+
+
+cloud:
+  aws:
+    # s3 bucket 이름 배포시 변경 필요
+    s3:
+      bucket: ENC(7mulBxQyTXh2O/kWnIUmx01OodzyFZP4)
+    # user access-key, secret-key 배포시 작성 필요
+    credentials:
+      access-key: ENC(yH4Wc9Gokmdtgxema+DSHGFP7dPUjoKV4P0KBgjTZxw=)
+      secret-key: ENC(j1lY7VnhJ2TYb885zMnE5OpXZj+X+K3v7YxTMcDgVRgBn4K/whbi5PBbtFAhmS2xT9r3kTtzIHQ=)
+    # s3 region
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error # aws meta-data 관련 오류로그 출력x
+
 
