@@ -37,6 +37,10 @@ public class RegistrationForm {
     @Email(message = "이메일 형식으로 작성해주세요.")
     private String email;
 
+    //이메일 인증을 위한 키값
+    @NotBlank(message = "인증번호를 입력해주세요.")
+    private String authKey;
+
     public User toUser(PasswordEncoder passwordEncoder){
         return User.builder()
                 .role(UserRole.USER)

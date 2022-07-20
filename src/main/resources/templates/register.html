@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}" >
     <link rel="stylesheet" th:href="@{/css/error/style.css}" >
+    <link rel="stylesheet" th:href="@{/css/email/register-style.css}">
     <!-- JS -->
     <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
     <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
@@ -65,15 +66,79 @@
                                         이메일 입력 오류
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="email_access_input"
+                                               th:field="*{authKey}" th:error-class="field-error" placeholder="인증번호를 입력하세요" disabled>
+                                        <span id="email_access_input_check"></span>
+                                        <div class="field-error" th:errors="*{authKey}">
+                                            인증번호 입력 오류
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button type="button" class="form-control form-control-user" id="email_auth_btn">인증번호 전송</button>
+                                        <style>
+                                            #email_auth_btn {
+                                                text-align: center;
+                                                display: inline-block;
+                                            }
+                                            #email_auth_btn > button:active{
+                                                box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+                                                position: relative;
+                                                top: 2px;
+                                            }
+                                        </style>
+                                    </div>
+                                    <script type="text/javascript">
+                                        let accessCode = '';
+
+                                        $('#email_auth_btn').click(function(){
+                                            const receiver = $('#email').val();
+
+                                            if(receiver === ''){
+                                                alert('이메일을 입력해주세요');
+                                                return false;
+                                            }
+
+                                            $.ajax({
+                                                type: 'GET',
+                                                url: '/register/emailSend',
+                                                data: { receiver: receiver },
+                                                contentType :"text/plain;charset=UTF-8",
+                                                success: function(data){
+                                                    alert('인증번호가 발송되었습니다.');
+                                                    $('#email_access_input').attr('disabled', false);
+                                                    accessCode = data;
+                                                },
+                                                error: function(request, status, error){
+                                                    alert('메일 발송에 실패하였습니다.');
+                                                }
+                                            });
+                                        });
+
+                                        $('#email_access_input').blur(function(){
+                                           const userInput = $('#email_access_input').val();
+                                           const checkAccessCode = $('#email_access_input_check');
+
+                                           if(userInput === accessCode){
+                                               checkAccessCode.html('인증번호가 일치합니다.');
+                                               checkAccessCode.attr("class", "correct");
+                                           } else {
+                                               checkAccessCode.html("인증번호를 다시 확인해주세요.");
+                                               checkAccessCode.attr("class", "incorrect");
+                                           }
+                                        });
+                                    </script>
+                                </div>
                                 <button type="submit" th:href="@{/register}" class="btn btn-primary btn-user btn-block">
                                     회원가입 완료
                                 </button>
                                 <hr>
-                                <a th:href="@{/}" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                <a th:href="@{/oauth2/authorization/google}" class="btn btn-user btn-block">
+                                    <img th:src="@{/images/google_login_button.png}"/>
                                 </a>
-                                <a th:href="@{/}" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                <a th:href="@{/oauth2/authorization/kakao}" class="btn btn-user btn-block">
+                                    <img th:src="@{/images/kakao_login_button.png}"/>
                                 </a>
                             </form>
                             <hr>

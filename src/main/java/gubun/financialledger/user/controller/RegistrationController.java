@@ -1,16 +1,17 @@
 package gubun.financialledger.user.controller;
 
 import gubun.financialledger.user.dto.RegistrationForm;
+import gubun.financialledger.user.service.MailService;
 import gubun.financialledger.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 
 @Slf4j
 @Controller
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegistrationController {
 
     private final UserService userService;
+    private final MailService mailService;
 
     @GetMapping
     public String registerForm(@ModelAttribute("user") RegistrationForm form){
@@ -49,5 +51,12 @@ public class RegistrationController {
 
         userService.save(form);
         return "redirect:/";
+    }
+
+    @GetMapping("/emailSend")
+    @ResponseBody
+    public String emailAuth(String receiver) throws MessagingException, UnsupportedEncodingException {
+        log.info("메일 전송={}", receiver);
+        return mailService.sendAccessCode(receiver);
     }
 }
