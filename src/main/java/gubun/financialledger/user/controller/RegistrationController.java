@@ -56,7 +56,7 @@ public class RegistrationController {
     @GetMapping("/emailSend")
     @ResponseBody
     public String emailAuth(String receiver) throws MessagingException, UnsupportedEncodingException {
-        log.info("메일 전송={}", receiver);
+        log.info("인증 메일 전송");
         return mailService.sendAccessCode(receiver);
     }
 }
