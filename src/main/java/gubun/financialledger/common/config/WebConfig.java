@@ -19,8 +19,8 @@ public class WebConfig implements WebMvcConfigurer{
         //security
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/register").setViewName("register");
-        registry.addViewController("/pwInquiry").setViewName("forgot-password");
-        registry.addViewController("/idInquiry").setViewName("forgot-password");
+        registry.addViewController("/pwInquiry").setViewName("pwInquiry");
+        registry.addViewController("/idInquiry").setViewName("idInquiry");
 
         //error
         registry.addViewController("/accessDenied").setViewName("403");

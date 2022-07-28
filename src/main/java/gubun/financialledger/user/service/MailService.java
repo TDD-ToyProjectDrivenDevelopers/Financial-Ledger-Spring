@@ -13,26 +13,37 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class MailService {
 
-    private static final String SUBJECT = "[Gubun TDD 회원가입 서비스 이메일 인증 입니다.]";
-    private static final String SENDER = "gubun@gmail.com";
-
     private final MailHandler mailHandler;
 
     public String sendAccessCode(String receiver) throws MessagingException, UnsupportedEncodingException {
-        mailHandler.setSubject(SUBJECT);
+        mailHandler.setSubject(MailProperties.AUTH_SUBJECT);
         String authKey = createAuthKey();
         mailHandler.setText(
                 new StringBuilder()
-                        .append("<h1>Gubun TDD 가입 메일인증 입니다</h1>")
+                        .append(MailProperties.AUTH_HEADER)
                         .append("<h2>인증 번호 : ")
                         .append(authKey)
                         .append("</h2>").toString()
         );
-        mailHandler.setFrom(SENDER, "Gubun TDD");
+        mailHandler.setFrom(MailProperties.AUTH_SENDER, MailProperties.SERVICE_NAME);
         mailHandler.setTo(receiver);
         mailHandler.send();
 
         return authKey;
+    }
+
+    public void sendUsername(String receiver, String username) throws MessagingException, UnsupportedEncodingException {
+        mailHandler.setSubject(MailProperties.ID_INQUIRY_SUBJECT);
+        mailHandler.setText(
+                new StringBuilder()
+                        .append(MailProperties.ID_INQUIRY_HEADER)
+                        .append("<h2>아이디 : ")
+                        .append(username)
+                        .append("</h2>").toString()
+        );
+        mailHandler.setFrom(MailProperties.AUTH_SENDER, MailProperties.SERVICE_NAME);
+        mailHandler.setTo(receiver);
+        mailHandler.send();
     }
 
     private String createAuthKey(){

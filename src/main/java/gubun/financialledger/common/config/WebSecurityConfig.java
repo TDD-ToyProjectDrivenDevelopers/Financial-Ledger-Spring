@@ -45,7 +45,7 @@ public class WebSecurityConfig  {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/register", "/register/emailSend", "/login").permitAll()
+                    .antMatchers("/register", "/register/emailSend", "/login", "/pwInquiry", "/idInquiry").permitAll()
                     .antMatchers("/admin/**").hasRole(UserRole.ADMIN.toString())
                     .anyRequest().authenticated()
                     .and()
