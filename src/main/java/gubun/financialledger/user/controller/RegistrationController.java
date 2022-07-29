@@ -10,9 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
-import java.io.UnsupportedEncodingException;
-
 @Slf4j
 @Controller
 @RequestMapping("/register")
@@ -20,11 +17,12 @@ import java.io.UnsupportedEncodingException;
 public class RegistrationController {
 
     private final UserService userService;
-    private final MailService mailService;
+
+    private static final String REGISTER_LOGICAL_PATH = "register";
 
     @GetMapping
     public String registerForm(@ModelAttribute("user") RegistrationForm form){
-        return "register";
+        return REGISTER_LOGICAL_PATH;
     }
 
     @PostMapping
@@ -34,29 +32,23 @@ public class RegistrationController {
         if(userService.isDuplicatedUser(form.getUsername())){
             log.info("중복회원 오류 username={}", form.getUsername());
             bindingResult.rejectValue("username", "duplicateUser", "아이디가 중복됩니다");
-            return "register";
+            return REGISTER_LOGICAL_PATH;
         }
 
         // 비밀번호 일치 검증
         if(!form.getPassword().equals(form.getRepeatPassword())){
+            log.info("비밀번호 일치 오류={}", form.getPassword() + "!=" + form.getRepeatPassword());
             bindingResult.reject("notSamePassword", "비밀번호가 일치하지 않습니다");
-            return "register";
+            return REGISTER_LOGICAL_PATH;
         }
 
         // 그 외 기타 필드 검증
         if(bindingResult.hasErrors()){
-            log.info("error={}", bindingResult);
-            return "register";
+            log.info("필드 검증 오류={}", bindingResult);
+            return REGISTER_LOGICAL_PATH;
         }
 
         userService.save(form);
         return "redirect:/";
-    }
-
-    @GetMapping("/emailSend")
-    @ResponseBody
-    public String emailAuth(String receiver) throws MessagingException, UnsupportedEncodingException {
-        log.info("인증 메일 전송");
-        return mailService.sendAccessCode(receiver);
     }
 }

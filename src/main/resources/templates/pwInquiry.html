@@ -33,7 +33,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">비밀번호 찾기</h1>
                                     </div>
-                                    <form class="pw-inquiry-form" id="pwInquiryForm" th:action="@{/pwInquiry}"  th:object="${form}" method="post" >
+                                    <form class="pw-inquiry-form" id="pwInquiryForm" th:action="@{/inquiry/pw}"  th:object="${form}" method="post" >
 
                                         <div th:if="${#fields.hasGlobalErrors()}">
                                             <p class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
@@ -84,7 +84,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" th:href="@{/idInquiry}">아이디 찾기 </a>
+                                        <a class="small" th:href="@{/inquiry/id}">아이디 찾기 </a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" th:href="@{/register}">회원가입</a>

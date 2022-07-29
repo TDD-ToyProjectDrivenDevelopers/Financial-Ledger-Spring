@@ -33,7 +33,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">아이디 찾기</h1>
                                     </div>
-                                    <form class="id-inquiry-form" id="idInquiryForm" th:action="@{/idInquiry}"  th:object="${form}" method="post" >
+                                    <form class="id-inquiry-form" id="idInquiryForm" th:action="@{/inquiry/id}"  th:object="${form}" method="post" >
 
                                         <div th:if="${#fields.hasGlobalErrors()}">
                                             <p class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
@@ -45,13 +45,13 @@
                                                    th:field="*{email}" placeholder="이메일을 입력하세요">
                                             <div id="error" class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                                         </div>
-                                        <button type="submit" th:href="@{/pwInquiry}" class="btn btn-primary btn-user btn-block" id="pw-inquiry-submit-btn">
+                                        <button type="submit" th:href="@{/inquiry/id}" class="btn btn-primary btn-user btn-block" id="pw-inquiry-submit-btn">
                                             이메일 전송
                                         </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" th:href="@{/pwInquiry}">비밀번호 찾기 </a>
+                                        <a class="small" th:href="@{/inquiry/pw}">비밀번호 찾기 </a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" th:href="@{/register}">회원가입</a>

@@ -1,6 +1,6 @@
 package gubun.financialledger.user.service;
 
-import gubun.financialledger.user.auth.MailHandler;
+import gubun.financialledger.user.handler.MailHandler;
 import lombok.RequiredArgsConstructor;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.stereotype.Service;

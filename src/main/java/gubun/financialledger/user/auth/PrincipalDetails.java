@@ -1,4 +1,4 @@
-package gubun.financialledger.user;
+package gubun.financialledger.user.auth;
 
 import gubun.financialledger.user.entity.User;
 import gubun.financialledger.user.entity.UserRole;

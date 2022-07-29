@@ -1,8 +1,7 @@
 package gubun.financialledger.diary.entity.controller;
 
 import gubun.financialledger.common.util.ImageUploader;
-import gubun.financialledger.user.PrincipalDetails;
-import gubun.financialledger.user.entity.User;
+import gubun.financialledger.user.auth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 
 /**

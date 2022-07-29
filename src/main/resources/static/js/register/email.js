@@ -11,7 +11,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/register/emailSend',
+            url: '/email/auth',
             data: { receiver: receiver },
             contentType :"text/plain;charset=UTF-8",
             success: function(data){
