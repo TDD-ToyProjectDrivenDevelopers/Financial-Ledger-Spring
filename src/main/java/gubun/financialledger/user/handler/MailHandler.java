@@ -1,4 +1,4 @@
-package gubun.financialledger.user.auth;
+package gubun.financialledger.user.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
