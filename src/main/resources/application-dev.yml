@@ -3,9 +3,7 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: ENC(Akn44dXsH2btWIRNfqmNJc60LKUOWP2c+PVQ15+xSoZf4ddzGl1JcI13hbWZ9LUVeXo6kwdlBIuw+YKPaSUkK8h0sQWonoADl1lGUFwdS4NAaeQugwBBNJIu6kwxMBJ1)
-    username: ENC(EmRRq+Xam8r36WFSPZas2UjrcY/DfwSv)
-    password: ENC(daX0fX/g9fgOzXIz8TroQj50f1XwHf4z6qHiPA0Vv3g=)
+r
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -40,6 +38,9 @@ spring:
           google:
             client-id: ENC(Atfw7cewc5BN2InmYxrpxaz8Z783VAV65uqZJquyn7MiXTqYRvGne9zdzFY4wWCqE5sqX1sr8szz7DPWJ0BmZ8Cvs7JtZy+YVz4gMy7Eu9VGJvLPVjlqUw==)
             client-secret: ENC(lMkxJ5HbzzASG7SK4Nzj1qm4FlsRzutYwpqz7sE5BCeLQbzRpIF9S0Svln5X+FR2)
+            scope:
+              - email
+              - profile
 
         provider:
           kakao:
@@ -47,9 +48,6 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: kakao_account
-
-
-
 
 cloud:
   aws:
