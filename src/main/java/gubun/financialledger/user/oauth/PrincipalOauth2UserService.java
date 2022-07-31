@@ -1,8 +1,10 @@
 package gubun.financialledger.user.oauth;
 
+import com.nimbusds.openid.connect.sdk.claims.UserInfo;
 import gubun.financialledger.user.auth.PrincipalDetails;
 import gubun.financialledger.user.entity.User;
 import gubun.financialledger.user.entity.UserRole;
+import gubun.financialledger.user.oauth.provider.GoogleUserInfo;
 import gubun.financialledger.user.oauth.provider.KakaoUserInfo;
 import gubun.financialledger.user.oauth.provider.OAuth2UserInfo;
 import gubun.financialledger.user.repository.UserRepository;
@@ -29,12 +31,16 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         log.info("OAuth 회원 검증");
-        OAuth2User oAuth2User = super.loadUser(userRequest);
 
+        OAuth2User oAuth2User = super.loadUser(userRequest);
         OAuth2UserInfo oAuth2UserInfo = null;
+
         String provider = userRequest.getClientRegistration().getRegistrationId();
         if(provider.equals("kakao")){
             oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
+        }
+        else if(provider.equals("google")){
+            oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
         }
 
         // TODO : OAuth 회원이 아니라면 회원가입
