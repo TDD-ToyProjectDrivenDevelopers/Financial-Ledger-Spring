@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>가계부 - 비밀번호찾기</title>
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}" >
+    <link rel="stylesheet" th:href="@{/css/error/style.css}" >
+    <!-- JS -->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+</head>
+<body class="bg-gradient-primary">
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-2">비밀번호 찾기</h1>
+                                    </div>
+                                    <form class="pw-inquiry-form" id="pwInquiryForm" th:action="@{/inquiry/pw}"  th:object="${form}" method="post" >
+
+                                        <div th:if="${#fields.hasGlobalErrors()}">
+                                            <p class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="username">아이디</label>
+                                            <input type="text" class="form-control form-control-user" id="username"
+                                                   th:field="*{username}" placeholder="아이디를 입력하세요">
+                                            <div id="error" class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">이메일</label>
+                                            <input type="text" class="form-control form-control-user" id="email"
+                                                   th:field="*{email}" placeholder="이메일을 입력하세요">
+                                            <div id="error" class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input type="text" class="form-control form-control-user" id="authKey"
+                                                       th:field="*{authKey}" placeholder="인증번호를 입력하세요" disabled>
+                                                <div id="error" class="error" th:if="${#fields.hasErrors('authKey')}" th:errors="*{authKey}"></div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button type="button" class="form-control form-control-user" id="email_auth_btn">인증번호 전송</button>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <h2 class="h4 text-gray-900 mb-2">비밀번호 재설정</h2>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label for="password">비밀번호</label>
+                                                <input type="password" class="form-control form-control-user" id="password"
+                                                       th:field="*{password}" placeholder="비밀번호를 입력하세요" disabled>
+                                                <div id="error" class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{username}"></div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="repeatPassword">비밀번호 확인</label>
+                                                <input type="password" class="form-control form-control-user" id="repeatPassword"
+                                                       th:field="*{repeatPassword}" placeholder="비밀번호를 한번 더 입력하세요" disabled>
+                                                <div id="error" class="error" th:if="${#fields.hasErrors('repeatPassword')}" th:errors="*{repeatPassword}"></div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" th:href="@{/pwInquiry}" class="btn btn-primary btn-user btn-block" id="pw-inquiry-submit-btn" disabled>
+                                            비밀번호 재설정 완료
+                                        </button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" th:href="@{/inquiry/id}">아이디 찾기 </a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" th:href="@{/register}">회원가입</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" th:href="@{/login}">이미 아이디가 있습니까?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/pwInquiry/email.js}"></script>
+    <script type="text/javascript" th:src="@{/js/pwInquiry/validation.js}"></script>
+</body>
+</html>

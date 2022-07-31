@@ -1,6 +1,6 @@
 package gubun.financialledger.user.oauth;
 
-import gubun.financialledger.user.PrincipalDetails;
+import gubun.financialledger.user.auth.PrincipalDetails;
 import gubun.financialledger.user.entity.User;
 import gubun.financialledger.user.entity.UserRole;
 import gubun.financialledger.user.oauth.provider.KakaoUserInfo;

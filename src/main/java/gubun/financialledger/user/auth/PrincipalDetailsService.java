@@ -1,6 +1,5 @@
 package gubun.financialledger.user.auth;
 
-import gubun.financialledger.user.PrincipalDetails;
 import gubun.financialledger.user.entity.User;
 import gubun.financialledger.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

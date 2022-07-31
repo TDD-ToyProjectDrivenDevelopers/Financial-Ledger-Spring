@@ -13,6 +13,10 @@
     <link rel="stylesheet" th:href="@{/css/error/style.css}" >
     <!-- JS -->
     <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
     <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
     <script th:src="@{/js/sb-admin-2.min.js}"></script>
@@ -29,56 +33,65 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
-                            <form class="user" th:action="@{/register}"  th:object="${user}" method="post" >
+                            <form class="user" id="registerForm" th:action="@{/register}"  th:object="${user}" method="post" >
 
                                 <div th:if="${#fields.hasGlobalErrors()}">
-                                    <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+                                    <p class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="username">아이디</label>
                                     <input type="text" class="form-control form-control-user" id="username"
-                                           th:field="*{username}" th:error-class="field-error" placeholder="아이디를 입력하세요">
-                                    <div class="field-error" th:errors="*{username}">
-                                        아이디 입력 오류
-                                    </div>
+                                           th:field="*{username}" placeholder="아이디를 입력하세요">
+                                    <div id="error" class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label for="password">비밀번호</label>
                                         <input type="password" class="form-control form-control-user" id="password"
-                                               th:field="*{password}" th:error-class="field-error" placeholder="비밀번호를 입력하세요">
-                                        <div class="field-error" th:errors="*{password}">
-                                            비밀번호 입력 오류
-                                        </div>
+                                               th:field="*{password}" placeholder="비밀번호를 입력하세요">
+                                        <div id="error" class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{username}"></div>
                                     </div>
                                     <div class="col-sm-6">
+                                        <label for="repeatPassword">비밀번호 확인</label>
                                         <input type="password" class="form-control form-control-user" id="repeatPassword"
-                                               th:field="*{repeatPassword}" th:error-class="field-error" placeholder="비밀번호를 한번 더 입력하세요">
-                                        <div class="field-error" th:errors="*{repeatPassword}">
-                                            비밀번호 입력 오류
-                                        </div>
+                                               th:field="*{repeatPassword}" placeholder="비밀번호를 한번 더 입력하세요">
+                                        <div id="error" class="error" th:if="${#fields.hasErrors('repeatPassword')}" th:errors="*{repeatPassword}"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="email"
-                                           th:field="*{email}" th:error-class="field-error" placeholder="이메일을 입력하세요">
-                                    <div class="field-error" th:errors="*{email}">
-                                        이메일 입력 오류
+                                    <label for="email">이메일</label>
+                                    <input type="text" class="form-control form-control-user" id="email"
+                                           th:field="*{email}" placeholder="이메일을 입력하세요">
+                                    <div id="error" class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="authKey"
+                                               th:field="*{authKey}" placeholder="인증번호를 입력하세요" disabled>
+                                        <div id="error" class="error" th:if="${#fields.hasErrors('authKey')}" th:errors="*{authKey}"></div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button type="button" class="form-control form-control-user" id="email_auth_btn">인증번호 전송</button>
                                     </div>
                                 </div>
                                 <button type="submit" th:href="@{/register}" class="btn btn-primary btn-user btn-block">
                                     회원가입 완료
                                 </button>
                                 <hr>
-                                <a th:href="@{/}" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                <a th:href="@{/oauth2/authorization/google}" class="btn btn-user btn-block">
+                                    <img th:src="@{/images/google_login_button.png}"/>
                                 </a>
-                                <a th:href="@{/}" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                <a th:href="@{/oauth2/authorization/kakao}" class="btn btn-user btn-block">
+                                    <img th:src="@{/images/kakao_login_button.png}"/>
                                 </a>
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" th:href="@{/pwInquiry}">비밀번호 찾기</a>
+                                <a class="small" th:href="@{/inquiry/id}">아이디 찾기 </a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" th:href="@{/inquiry/pw}">비밀번호 찾기</a>
                             </div>
                             <div class="text-center">
                                 <a class="small" th:href="@{/login}">이미 아이디가 있습니까?</a>
@@ -89,5 +102,7 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" th:src="@{/js/register/email.js}"></script>
+    <script type="text/javascript" th:src="@{/js/register/validation.js}"></script>
 </body>
 </html>
