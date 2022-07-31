@@ -37,6 +37,10 @@ spring:
             redirect_uri: http://localhost:8080/login/oauth2/code/kakao
             client-authentication-method: POST
 
+          google:
+            client-id: ENC(Atfw7cewc5BN2InmYxrpxaz8Z783VAV65uqZJquyn7MiXTqYRvGne9zdzFY4wWCqE5sqX1sr8szz7DPWJ0BmZ8Cvs7JtZy+YVz4gMy7Eu9VGJvLPVjlqUw==)
+            client-secret: ENC(lMkxJ5HbzzASG7SK4Nzj1qm4FlsRzutYwpqz7sE5BCeLQbzRpIF9S0Svln5X+FR2)
+
         provider:
           kakao:
             authorization-uri: https://kauth.kakao.com/oauth/authorize
