@@ -1,5 +1,7 @@
 package gubun.financialledger.bank.entity;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,4 +13,9 @@ public class Bank {
 
     @Column(name = "bank_name")
     private String bankName;
+
+    @Builder
+    public Bank(String bankName){
+        this.bankName = bankName;
+    }
 }
