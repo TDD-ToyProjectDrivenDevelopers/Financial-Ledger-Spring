@@ -10,6 +10,8 @@ import gubun.financialledger.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +35,11 @@ public class AccountController {
 
     private static BankRepository bankRepository;
 
+    @GetMapping
+    public String AccountList(final Pageable pageable){
+        Page<Account> account = accountRepository.findAll(pageable);
+        return "account";
+    }
 
     @GetMapping("/new")
     public String AccountForm(Model model){
