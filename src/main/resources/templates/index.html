@@ -144,20 +144,6 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <!-- Topbar Search -->
-                <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
@@ -253,7 +239,6 @@
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
                                     <img class="sidebar-card-illustration mb-2" />
-                                    <img class="rounded-circle" th:src="@{/img/undraw_profile_1.svg}"  alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
                                 <div class="font-weight-bold">
@@ -262,56 +247,30 @@
                                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                                 </div>
                             </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" th:src="@{/img/undraw_profile_2.svg}"  alt="...">
-                                    <div class="status-indicator"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
-                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" th:src="@{/img/undraw_profile_3.svg}"  alt="...">
-                                    <div class="status-indicator bg-warning"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
-                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                         alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                </div>
-                            </a>
                             <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                         </div>
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>
-                    <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
+                        <!-- 프로필  -->
+                        <!--
+                         1) 구글 사용자일경우
+                         2) 카카오 사용자일경우
+                         3) 기본 사용자일경우 - 프로필 사진 등록
+                        -->
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                            <img class="img-profile rounded-circle"
-                                 th:src="@{/img/undraw_profile.svg}"
-                                 src="">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" th:text = "${user.username}">username</span>
+                            <img class="img-profile rounded-circle" th:if="${user.provider == 'kakao'}" th:src="@{/images/kakao_logo.png}">
+                            <img class="img-profile rounded-circle" th:if="${user.provider == 'google'}" th:src="@{/images/google_logo.png}">
+                            <!-- 기본 로그인 이미지는 default 로 지정한뒤, 프로필 설정 화면에서 추가 가능 -->
                         </a>
+                        <!--  // 프로필  -->
+
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
+                            <!--회원정보 조회 -->
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 회원정보
