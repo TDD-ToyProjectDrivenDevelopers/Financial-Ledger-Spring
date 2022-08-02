@@ -260,10 +260,10 @@
                         -->
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" th:text = "${user.username}">username</span>
                             <img class="img-profile rounded-circle" th:if="${user.provider == 'kakao'}" th:src="@{/images/kakao_logo.png}">
                             <img class="img-profile rounded-circle" th:if="${user.provider == 'google'}" th:src="@{/images/google_logo.png}">
                             <!-- 기본 로그인 이미지는 default 로 지정한뒤, 프로필 설정 화면에서 추가 가능 -->
+                            <img class="img-profile rounded-circle" th:if="${user.provider == '' || user.provider == null}" th:src="@{/images/default_logo.png}">
                         </a>
                         <!--  // 프로필  -->
 
@@ -271,7 +271,7 @@
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
                             <!--회원정보 조회 -->
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" th:href="@{/profile}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 회원정보
                             </a>
