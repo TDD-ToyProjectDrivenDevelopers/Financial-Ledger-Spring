@@ -24,6 +24,9 @@
   <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
   <script th:src="@{/js/demo/chart-area-demo.js}"></script>
   <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
+
+  <!-- custom JS -->
+  <script th:src="@{/js/subpages/userProfile.js}"></script>
 </head>
 <body id="page-top">
 <!-- Page Wrapper -->
@@ -313,16 +316,22 @@
                 <input type="email"  th:value="${user.email}" class="form-control" id="inputEmail" disabled >
               </div>
             </div>
-            <div class="row justify-content-center" hidden>
+            <div class="row justify-content-center" id="pw0" style="display:none;">
               <div class="col-md-6">
-                <label for="inputPassword" class="form-label">비밀번호</label>
-                <input type="password"  class="form-control" id="inputPassword" disabled>
+                <label for="inputPassword" class="form-label">현재비밀번호</label>
+                <input type="password"  class="form-control" id="inputCurrentPassword" >
               </div>
             </div>
-            <div class="row justify-content-center" hidden>
+            <div class="row justify-content-center" id="pw1" style="display:none;">
+              <div class="col-md-6">
+                <label for="inputPassword" class="form-label">새 비밀번호</label>
+                <input type="password"  class="form-control" id="inputPassword" >
+              </div>
+            </div>
+            <div class="row justify-content-center" id="pw2"  style="display:none;">
               <div class="col-md-6">
                 <label for="inputPasswordCheck" class="form-label">비밀번호 확인</label>
-                <input type="password" class="form-control" id="inputPasswordCheck" disabled>
+                <input type="password" class="form-control" id="inputPasswordCheck" >
               </div>
             </div>
             <br>
@@ -331,6 +340,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">계좌번호</label>
                 </div>
+                <!-- TODO : 변경 필요 : user가 가지고 있는 계좌 List 조회 -->
                 <select class="custom-select" id="inputGroupSelect01">
                   <option selected>--보유 계좌--</option>
                   <option value="1" >신한은행 : 110436535721 </option>
@@ -342,8 +352,12 @@
             <br>
             <div class="row justify-content-center">
               <div>
-                <button type="button" class="btn btn-primary">비밀번호 변경</button>
-                <button type="button" class="btn btn-danger">회원 탈퇴</button>
+                <button type="button" class="btn btn-outline-primary" th:if="${user.provider == '' || user.provider == null}" onclick="changePassword()" id="changePasswordBtn">비밀번호 변경</button>
+                <button type="button" class="btn btn-outline-danger" onclick="cancelUpdate()" id="cancelBtn" style="display:none;">취소</button>
+                <button type="button" class="btn btn-primary"  id="userUpdateBtn" style="display:none;"
+                        data-toggle="modal" data-target="#userUpdateModal">저장하기</button>
+                <button type="button" class="btn btn-danger" th:if="${user.provider == '' || user.provider == null}"  id="deleteUserBtn"
+                        data-toggle="modal" data-target="#deleteUserModal">회원 탈퇴</button>
               </div>
             </div>
             <br>
@@ -388,6 +402,45 @@
         </div>
       </div>
     </div>
+
+  <!-- 비밀번호 변경 Modal-->
+  <div class="modal fade" id="userUpdateModal" tabindex="-1" role="dialog" aria-labelledby="userUpdateModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userUpdateModalLabel">비밀번호를 변경하시겠습니까?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">비밀번호를 변경하시려면 "확인"을 눌러주세요.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+          <a class="btn btn-primary" th:href="@{/changePassword}">확인</a>
+        </div>
+      </div>
+    </div>
+
+   <!-- 회원탈퇴  Modal-->
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteUserModalLabel">회원탈퇴 하시겠습니까?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">회원탈퇴하시려면 "확인"을 눌러주세요.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+            <a class="btn btn-primary" th:href="@{/deleteUser}">확인</a>
+          </div>
+        </div>
+      </div>
+  </div>
 
 
 </body>
