@@ -25,6 +25,7 @@ public class WebSecurityConfig  {
 
     private final UserDetailsService userDetailsService;
     private final PrincipalOauth2UserService principalOauth2UserService;
+    private final AuthenticationFailureHandler authenticationFailureHandler;
 
     private static final String[] ANONYMOUS_MATCHERS = {
             "/register", "/email/**", "/login/**", "/inquiry/**"
@@ -34,9 +35,6 @@ public class WebSecurityConfig  {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    @Bean
-    public AuthenticationFailureHandler authenticationFailureHandler() { return new CustomAuthenticationFailureHandler(); }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -51,7 +49,7 @@ public class WebSecurityConfig  {
                 .loginPage("/login")
                 .defaultSuccessUrl("/", true)
                 .loginProcessingUrl("/login")
-                .failureHandler(authenticationFailureHandler());
+                .failureHandler(authenticationFailureHandler);
 
         //OAuth 로그인 사용
         http.oauth2Login()

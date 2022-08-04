@@ -38,11 +38,8 @@
                                     <h1 class="h4 text-gray-900 mb-4">로그인을 하세요</h1>
                                 </div>
                                 <form name ="form" class="form" th:action="@{/login}"  method="post"  onsubmit="return validateform()">
-                                    <div th:if="${param.error}">
-                                        <span> 로그인 실패</span>
-                                    </div>
-                                    <div th:if="${param.logout}">
-                                        <span> 로그아웃</span>
+                                    <div th:if="${param.error}" class="form-group">
+                                        <span th:text="${exception}" class="alert alert-danger p-2"></span>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" id="username" name="username"  class="form-control form-control-user"
