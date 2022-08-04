@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface BankRepository extends JpaRepository<Bank, Long> {
 
-    @Override
-    List<Bank> findAll();
 }

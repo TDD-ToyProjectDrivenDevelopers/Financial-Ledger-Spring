@@ -1,10 +1,13 @@
 package gubun.financialledger.bank.entity;
 
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Bank {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
