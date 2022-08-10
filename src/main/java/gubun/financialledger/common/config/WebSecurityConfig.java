@@ -27,7 +27,7 @@ public class WebSecurityConfig  {
     private final PrincipalOauth2UserService principalOauth2UserService;
 
     private static final String[] ANONYMOUS_MATCHERS = {
-            "/register", "/email/**", "/login/**", "/inquiry/**"
+            "/register", "/email/**", "/login/**", "/inquiry/**", "/account/**"
     };
 
     @Bean

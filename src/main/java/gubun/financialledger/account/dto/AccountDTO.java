@@ -17,11 +17,9 @@ public class AccountDTO {
     @PositiveOrZero(message="There's no money")
     private Long depositAmount;
 
-    private User user;
-
     private Bank bank;
 
-    public Account toEntity(User user, Bank bank){
+    public Account toEntity(User user){
         return Account.builder()
                 .accountName(accountName)
                 .depositAmount(depositAmount)

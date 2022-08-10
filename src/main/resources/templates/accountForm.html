@@ -8,38 +8,29 @@
 </head>
 <body>
 
-<form method="POST" th:action="@{/account}" th:object="${AccountDTO}">
+<form method="POST" th:action="@{/account}" th:object="${accountDTO}">
     <h1>Save your Account creations!</h1>
-
-    <div th:if="${#fields.hasErrors()}">
-			<span class="validationError"> Please correct the problems
-				below and resubmit. </span>
-    </div>
 
     <h3>Write your personal Account...</h3>
 
     <div>
         <h3>Write your accountName :</h3>
-        <input type="text" th:field="*{AccountDTO.accountName}" />
-        <span class="validationError" th:if="${#fields.hasErrors('accountName')}"
-              th:errors="*{AccountDTO.accountName}">Name Error</span>
+        <input type="text" th:field="*{accountName}" />
         <br />
     </div>
 
     <div>
         <h3>Write your depositAmount :</h3>
-        <input type="text" th:field="*{AccountDTO.depositAmount}" />
-        <span class="validationError" th:if="${#fields.hasErrors('depositAmount')}"
-              th:errors="*{AccountDTO.depositAmount}">depositAmount Error</span>
+        <input type="text" th:field="*{depositAmount}" />
         <br />
     </div>
 
     <div class="Bank" id="bank">
         <h3>Pick your bank:</h3>
-        <div th:each="bank : ${bank}">
+        <div th:each="b : ${bank}">
             <input name="String" type="checkbox"
-                   th:value="${bank.bankName}" />
-            <span th:text="${bank.bankName}">BANKNAME</span><br />
+                   th:value="${b.bankName}" />
+            <span th:text="${b.bankName}">BANKNAME</span><br />
         </div>
     </div>
 

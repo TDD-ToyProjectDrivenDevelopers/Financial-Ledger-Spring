@@ -15,11 +15,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
@@ -40,34 +42,33 @@ public class AccountController {
     private final BankRepository bankRepository;
 
     @GetMapping
-    public String AccountList(Model model){ //page , size는 fianl로 정의하여 통일감
-        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "accountName")); //pagealbe 구현체
-        Page<Account> account = accountRepository.findAll(pageable);
-        model.addAttribute(account.getContent());
+    public String AccountList(@PageableDefault Pageable pageable, Model model){ //page , size는 fianl로 정의하여 통일감
+//        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "accountName")); //pagealbe 구현체
+        Page<Account> accountList = accountService.getAccountPage(pageable);
+        model.addAttribute("accountList", accountList); //accountList..getContent() ??
         return "account";
     }
 
     @GetMapping("/new")
-    public String AccountForm(Model model){
-//        List<Bank> bankList = bankRepository.findAll();
-//        for(Bank bank : bankList) model.addAttribute(bank);
-        List<Bank> bank = new LinkedList<>();
-        bank.add(Bank.builder().bankName("국민은행").build());
-        model.addAttribute(bank);
+    public String AccountForm(Model model, @ModelAttribute("accountDTO") AccountDTO accountDTO){
+        List<Bank> bankList = bankRepository.findAll();
+        for(Bank bank : bankList) model.addAttribute(bank);
+//        List<Bank> bank = new LinkedList<>();
+//        bank.add(Bank.builder().bankName("국민은행").build());
+//        bank.add(Bank.builder().bankName("우리은행").build());
+        model.addAttribute("bank", bankList);
 
-        AccountDTO accountDTO = new AccountDTO();
-        model.addAttribute(accountDTO);
         return "accountForm";
     }
 
     @PostMapping
-    public String saveOrder(@Valid AccountDTO accountDTO, @AuthenticationPrincipal User user,
-                            Bank bank, Errors errors, SessionStatus sessionStatus){
+    public String saveOrder(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO, @AuthenticationPrincipal User user,
+                            Errors errors, SessionStatus sessionStatus){
         if(errors.hasErrors()){
             return "accountForm";
         }
 
-        accountService.saveAccount(accountDTO.toEntity(user, bank));
+        accountService.saveAccount(accountDTO, user);
         sessionStatus.setComplete();
 
         return "redirect:/";
