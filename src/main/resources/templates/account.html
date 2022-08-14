@@ -24,34 +24,39 @@
     </tr>
 </table>
 
-<div class="page-num"
-     th:with="start=${(pages.number/maxPage)*maxPage + 1},
-                  end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})">
-    <ul>
-        <li th:if="${start > 1}">
-            <a th:href="@{/account?(page=0)}" th:text="'<<'"></a></li>
+<nav style="text-align: center;">
+    <ul class="pagination"
+        th:with="start=${T(Math).floor(boardList.number/10)*10 + 1},
+                    last=(${start + 9 < boardList.totalPages ? start + 9 : boardList.totalPages})">
+        <li>
+            <a th:href="@{/account(page=1)}" aria-label="First">
+                <span aria-hidden="true">First</span>
+            </a>
         </li>
 
-        <li th:if="${start > 1}">
-            <a th:href="@{/account?(page=${start - maxPage})}" th:text="'<'"></a>
+        <li th:class="${accountList.first} ? 'disabled'">
+            <a th:href="${accountList.first} ? '#' :@{/account(page=${accountList.number})}" aria-label="Previous">
+                <span aria-hidden="true">&lt;</span>
+            </a>
         </li>
 
-
-        <li th:each="page: ${#numbers.sequence(start, end)}">
-            <a th:href="@{/account?(page=${page-1})}" th:text="${page}"></a></li>
+        <li th:each="page: ${#numbers.sequence(start, last)}" th:class="${page == accountList.number + 1} ? 'active'">
+            <a th:text="${page}" th:href="@{/account(page=${page})}"></a>
         </li>
 
-        <li th:if="${end < pages.totalPages}">
-            <a th:href="@{/board/list?(page=${start + maxPage})}" th:text="'>'"></a>
+        <li th:class="${accountList.last} ? 'disabled'">
+            <a th:href="${accountList.last} ? '#' : @{/account(page=${accountList.number + 2})}" aria-label="Next">
+                <span aria-hidden="true">&gt;</span>
+            </a>
         </li>
 
-        <li th:if="${end < pages.totalPages}">
-            <a th:href="@{/board/list?(page=${pages.totalPages-1})}" th:text="'>>'"></a></li>
+        <li>
+            <a th:href="@{/account(page=${accountList.totalPages})}" aria-label="Last">
+                <span aria-hidden="true">Last</span>
+            </a>
         </li>
     </ul>
-
-</div>
-
+</nav>
 
 </body>
 </html>

@@ -20,10 +20,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
@@ -42,9 +39,10 @@ public class AccountController {
     private final BankRepository bankRepository;
 
     @GetMapping
-    public String AccountList(@PageableDefault Pageable pageable, Model model){ //page , size는 fianl로 정의하여 통일감
+    public Object AccountList(@PageableDefault Pageable pageable, Model model){ //page , size는 fianl로 정의하여 통일감
 //        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "accountName")); //pagealbe 구현체
         Page<Account> accountList = accountService.getAccountPage(pageable);
+        //return accountList;
         model.addAttribute("accountList", accountList); //accountList..getContent() ??
         return "account";
     }
@@ -71,6 +69,6 @@ public class AccountController {
         accountService.saveAccount(accountDTO, user);
         sessionStatus.setComplete();
 
-        return "redirect:/";
+        return "redirect:/account";
     }
 }
