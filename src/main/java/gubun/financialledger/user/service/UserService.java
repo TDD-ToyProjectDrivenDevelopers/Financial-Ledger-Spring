@@ -38,4 +38,15 @@ public class UserService {
     public void updatePassword(User user, String password){
         user.updatePassword(passwordEncoder.encode(password));
     }
+
+    @Transactional
+    public void deleteUser(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if(user.isPresent()) {
+            User u = user.get();
+            u.deleteUser(true);
+            userRepository.save(u);
+        }
+        // 탈퇴 시 logout 진행
+    }
 }
