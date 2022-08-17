@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="kr"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/default_layout}">
-    <th:block layout:fragment="content">
-        <h1>HELLO</h1>
-    </th:block>
+      layout:decorator="~{layout/default_layout}">
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <h1>레이아웃을 사용해 페이지 구성하기!</h1>
+    </div>
+</th:block>
 </html>
